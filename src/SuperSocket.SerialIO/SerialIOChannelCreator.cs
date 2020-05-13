@@ -1,5 +1,6 @@
 using System;
 using System.Buffers;
+using System.Data.Common;
 using System.IO.Ports;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -7,6 +8,9 @@ using SuperSocket.Channel;
 
 namespace SuperSocket.SerialIO
 {
+    /// <summary>
+    /// the serialport channel creator
+    /// </summary>
     public class SerialIOChannelCreator : IChannelCreator
     {
         private ILogger _logger;
@@ -16,6 +20,9 @@ namespace SuperSocket.SerialIO
         
         public ListenOptions Options { get;  }
 
+        /// <summary>
+        /// if the serial port is open,then return true
+        /// </summary>
         public bool IsRunning
         {
             get { return _port?.IsOpen ?? false; }
@@ -25,13 +32,11 @@ namespace SuperSocket.SerialIO
 
         public SerialIOChannelCreator(SerialIOListenOptions options, Func<SerialPort, ValueTask<IChannel>> channelFactory, ILogger logger)
         {
-            //if (!options.Path.StartsWith("sio://"))
-            //{
-            //    throw new ArgumentOutOfRangeException("Path", "串口只能使用sio://开头的字符串");
-            //}
-
-
-            _port=new SerialPort(options.Ip,options.BaudRate,options.Parity);
+            
+            _port=new SerialPort(options.Ip,options.BaudRate,options.Parity,options.Databits)
+            {
+                StopBits = options.StopBits
+            };
             
             Options = options;
             _channelFactory = channelFactory;
@@ -45,17 +50,21 @@ namespace SuperSocket.SerialIO
 
         public bool Start()
         {
+            
             try
             {
                 _port.Open();
 
+                //the serial port is diffent with the tcp, Client connections cannot be distinguished,and serial port never trigger the accept event
+                //so the serial port only one channel and one client
+                //so it need manual trigger the accept ,let the supersocket framework to force create the connection session
                 NewClientAccepted?.Invoke( this,_channelFactory(_port).Result);
 
                 return true;
             }
             catch (Exception e)
             {
-                _logger.Log(LogLevel.Error,$"串口{_port.PortName}打开失败");
+                _logger.Log(LogLevel.Error,$"serial port: {_port.PortName} open fail!");
 
                 return false;
             }
@@ -63,6 +72,7 @@ namespace SuperSocket.SerialIO
 
         public async Task StopAsync()
         {
+            //close the port when the server stop
             _port.Close();
 
         }

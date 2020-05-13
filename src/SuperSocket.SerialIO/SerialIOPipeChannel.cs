@@ -23,6 +23,7 @@ namespace SuperSocket.SerialIO
 
         protected override void Close()
         {
+            //don't close the serial port in the channel ,only close in creator's StopAsync
             //throw new NotImplementedException();
         }
 
@@ -33,6 +34,7 @@ namespace SuperSocket.SerialIO
 
         private async ValueTask<int> ReceiveAsync(Memory<byte> memory, CancellationToken cancellationToken)
         {
+            //read the data from serialport by async 
             return await _serialPort.BaseStream.ReadAsync(memory, cancellationToken);
         }
 
@@ -53,6 +55,7 @@ namespace SuperSocket.SerialIO
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
+                //write the data to serial port stream
                 await _serialPort.BaseStream.WriteAsync(piece, cancellationToken);
 
                 count += piece.Length;
