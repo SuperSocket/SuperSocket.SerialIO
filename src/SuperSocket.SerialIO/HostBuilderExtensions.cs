@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using SuperSocket.ProtoBase;
+using SuperSocket.SerialIO;
 
-namespace SuperSocket.SerialIO
+namespace SuperSocket
 {
     public static class HostBuilderExtensions
     {
-        //public static IHostBuilder UseSuperSocketWithFilterFactory<TReceivePackage, TPipelineFilterFactory, TSuperSocketService>(this IHostBuilder hostBuilder)
-        //    where TReceivePackage : class
-        //    where TPipelineFilterFactory : class, IPipelineFilterFactory<TReceivePackage>
-        //    where TSuperSocketService : SuperSocketService<TReceivePackage>
-        //{
-            
-
-        //    return hostBuilder;
-        //}
+        public static IHostBuilder UseSerialIO(this IHostBuilder hostBuilder)
+        {
+            return hostBuilder.ConfigureServices(
+                (hostCtx, services) =>
+                {
+                    services.AddSingleton<IChannelCreatorFactory, SerialIOChannelCreatorFactory>();
+                }
+            );
+        }
     }
 }
