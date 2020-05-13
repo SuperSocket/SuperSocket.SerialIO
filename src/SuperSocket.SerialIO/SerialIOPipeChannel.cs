@@ -23,7 +23,7 @@ namespace SuperSocket.SerialIO
 
         protected override void Close()
         {
-            //don't close the serial port in the channel ,only close in creator's StopAsync
+            //don't close the serial port in the channel, only close in creator's StopAsync
             //throw new NotImplementedException();
         }
 
@@ -44,7 +44,7 @@ namespace SuperSocket.SerialIO
             {
                 var segment = GetArrayByMemory(buffer.First);
 
-                _serialPort.Write(segment.Array, segment.Offset, segment.Count);
+                await _serialPort.BaseStream.WriteAsync(segment.Array, segment.Offset, segment.Count);
 
                 return segment.Count;
             }

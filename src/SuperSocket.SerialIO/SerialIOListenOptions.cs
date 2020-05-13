@@ -24,9 +24,9 @@ namespace SuperSocket.SerialIO
         {
             set
             {
-                if (value<5 || value>8)
+                if (value < 5 || value > 8)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(value),"the value limit 5 to 8");
+                    throw new ArgumentOutOfRangeException(nameof(value), "the value limit 5 to 8");
                 }
 
                 _databits = value;

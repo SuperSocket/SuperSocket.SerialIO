@@ -18,9 +18,7 @@ namespace SuperSocket.SerialIO
         {
             var filterFactory = pipelineFilterFactory as IPipelineFilterFactory<TPackageInfo>;
             channelOptions.Logger = loggerFactory.CreateLogger(nameof(IChannel));
-            var channelFactoryLogger = loggerFactory.CreateLogger(nameof(SerialIOChannelCreator));            
-
-
+            var channelFactoryLogger = loggerFactory.CreateLogger(nameof(SerialIOChannelCreator));
 
             return new SerialIOChannelCreator((SerialIOListenOptions)options, (s) => new ValueTask<IChannel>(new SerialIOPipeChannel<TPackageInfo>(s,filterFactory.Create(s),channelOptions)), channelFactoryLogger);
         }
