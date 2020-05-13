@@ -64,17 +64,18 @@ namespace SuperSocket.SerialIO
             }
             catch (Exception e)
             {
-                _logger.Log(LogLevel.Error,$"serial port: {_port.PortName} open fail!");
+                _logger.LogError(e, $"serial port: {_port.PortName} open fail!");
 
                 return false;
             }
         }
 
-        public async Task StopAsync()
+        public Task StopAsync()
         {
             //close the port when the server stop
             _port.Close();
-
+            
+            return Task.CompletedTask;
         }
     }
 }
