@@ -13,7 +13,7 @@ var host = SuperSocketHostBuilder
     .Create<StringPackageInfo, CommandLinePipelineFilter>()
     .UsePackageHandler(async (s, package) =>
         {
-            await s.SendAsync(Encoding.UTF8.GetBytes(result.ToString() + "\r\n"));
+            await s.SendAsync(Encoding.UTF8.GetBytes(package.ToString() + "\r\n"));
         })
     .ConfigureSuperSocket(options =>  
         {
