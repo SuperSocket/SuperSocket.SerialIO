@@ -8,9 +8,12 @@ namespace SuperSocket.SerialIO
     /// <summary>
     /// the serial port options
     /// </summary>
-    public class SerialIOListenOptions:ListenOptions
+    public class SerialIOListenOptions : ListenOptions
     {
+        public string PortName { get; set; }
+
         private byte _databits = 8;
+
         public int BaudRate { set; get; }
 
         public Parity Parity { set; get; } = Parity.None;

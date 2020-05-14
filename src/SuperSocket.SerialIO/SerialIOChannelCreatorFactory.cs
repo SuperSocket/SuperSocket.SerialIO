@@ -20,7 +20,8 @@ namespace SuperSocket.SerialIO
             channelOptions.Logger = loggerFactory.CreateLogger(nameof(IChannel));
             var channelFactoryLogger = loggerFactory.CreateLogger(nameof(SerialIOChannelCreator));
 
-            return new SerialIOChannelCreator((SerialIOListenOptions)options, (s) => new ValueTask<IChannel>(new SerialIOPipeChannel<TPackageInfo>(s,filterFactory.Create(s),channelOptions)), channelFactoryLogger);
+            return new SerialIOChannelCreator(options, (s) =>
+                new ValueTask<IChannel>(new SerialIOPipeChannel<TPackageInfo>(s, filterFactory.Create(s), channelOptions)), channelFactoryLogger);
         }
     }
 }
