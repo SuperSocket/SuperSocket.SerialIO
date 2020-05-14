@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{95FCA082-975
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.SerialIO", "src\SuperSocket.SerialIO\SuperSocket.SerialIO.csproj", "{42AA3A96-B3EC-47D8-9236-8954715D07F7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{24C2D8A1-2180-4064-A733-74F04CF80556}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "test\Test\Test.csproj", "{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +36,21 @@ Global
 		{42AA3A96-B3EC-47D8-9236-8954715D07F7}.Release|x64.Build.0 = Release|Any CPU
 		{42AA3A96-B3EC-47D8-9236-8954715D07F7}.Release|x86.ActiveCfg = Release|Any CPU
 		{42AA3A96-B3EC-47D8-9236-8954715D07F7}.Release|x86.Build.0 = Release|Any CPU
+		{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0}.Debug|x64.Build.0 = Debug|Any CPU
+		{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0}.Debug|x86.Build.0 = Debug|Any CPU
+		{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0}.Release|x64.ActiveCfg = Release|Any CPU
+		{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0}.Release|x64.Build.0 = Release|Any CPU
+		{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0}.Release|x86.ActiveCfg = Release|Any CPU
+		{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{42AA3A96-B3EC-47D8-9236-8954715D07F7} = {95FCA082-9758-4EBB-B4C5-6B260E36CAF7}
+		{59B2FE55-9B6D-46CF-BA4F-5A1F87BED0E0} = {24C2D8A1-2180-4064-A733-74F04CF80556}
 	EndGlobalSection
 EndGlobal

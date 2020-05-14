@@ -8,7 +8,7 @@ namespace SuperSocket.SerialIO
     /// <summary>
     /// the serial port options
     /// </summary>
-    public class SerialIOListenOptions : ListenOptions
+    public class SerialIOListenOptions : ListenOptions, ISerialIOEndPoint
     {
         public string PortName { get; set; }
 
