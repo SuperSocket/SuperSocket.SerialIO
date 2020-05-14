@@ -47,7 +47,9 @@ namespace SuperSocket.SerialIO
                 .Select(x => x.Split('=', 2))
                 .ToDictionary(x => x[0], x => x[1], StringComparer.OrdinalIgnoreCase);
 
-            if (!query.TryGetValue("portName", out string portName) || string.IsNullOrEmpty(portName))
+            var portName = sioUri.Host;
+
+            if (string.IsNullOrEmpty(portName))
                 throw new Exception("PortName is required in the ListenOptions.");
 
             if (!query.TryGetValue("baudRate", out string baudRate) || string.IsNullOrEmpty(baudRate))
@@ -97,7 +99,7 @@ namespace SuperSocket.SerialIO
             _port = CreateSerialPort(options);
 
             Options = options;
-            
+
             _channelFactory = channelFactory;
             _logger = logger;
         }
