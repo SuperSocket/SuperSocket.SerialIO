@@ -10,7 +10,6 @@ using SuperSocket.ProtoBase;
 namespace SuperSocket.SerialIO
 {
     public class SerialIOPipeChannel<TPackageInfo> : PipeChannel<TPackageInfo>
-        where TPackageInfo : class
     {
         private SerialPort _serialPort = null;
 
@@ -18,7 +17,6 @@ namespace SuperSocket.SerialIO
             : base(pipelineFilter, options)
         {
             _serialPort = serialPort;
-            StartTasks();
         }
 
         protected override void Close()

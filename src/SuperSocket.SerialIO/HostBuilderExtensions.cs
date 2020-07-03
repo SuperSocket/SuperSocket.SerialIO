@@ -7,7 +7,7 @@ namespace SuperSocket
 {
     public static class HostBuilderExtensions
     {
-        public static IHostBuilder UseSerialIO(this IHostBuilder hostBuilder)
+        public static IHostBuilder UseSerialIO(this ISuperSocketHostBuilder hostBuilder)
         {
             return hostBuilder.ConfigureServices(
                 (hostCtx, services) =>

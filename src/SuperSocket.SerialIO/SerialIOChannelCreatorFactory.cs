@@ -14,7 +14,7 @@ namespace SuperSocket.SerialIO
 
         }
 
-        public IChannelCreator CreateChannelCreator<TPackageInfo>(ListenOptions options, ChannelOptions channelOptions, ILoggerFactory loggerFactory, object pipelineFilterFactory) where TPackageInfo : class
+        public IChannelCreator CreateChannelCreator<TPackageInfo>(ListenOptions options, ChannelOptions channelOptions, ILoggerFactory loggerFactory, object pipelineFilterFactory)
         {
             var filterFactory = pipelineFilterFactory as IPipelineFilterFactory<TPackageInfo>;
             channelOptions.Logger = loggerFactory.CreateLogger(nameof(IChannel));
