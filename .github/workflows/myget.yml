@@ -1,4 +1,4 @@
-name: MyGet Package Deploy
+name: build
 
 on:
     push:
