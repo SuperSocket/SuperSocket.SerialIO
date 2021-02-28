@@ -1,9 +1,11 @@
 # SuperSocket.SerialIO
 
 [![Join the chat at https://gitter.im/supersocket/community](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/supersocket/community)
-[![Build Status](https://travis-ci.org/supersocket/SuperSocket.SerialIO.svg?branch=master)](https://travis-ci.org/supersocket/SuperSocket.SerialIO)
+[![Build Status](https://github.com/SuperSocket/SuperSocket.SerialIO/actions/workflows/myget.yml/badge.svg)](https://github.com/SuperSocket/SuperSocket.SerialIO/actions/workflows/myget.yml)
 [![NuGet Version](https://img.shields.io/nuget/vpre/SuperSocket.SerialIO.svg?style=flat)](https://www.nuget.org/packages/SuperSocket.SerialIO/)
 [![NuGet Download](https://img.shields.io/nuget/dt/SuperSocket.SerialIO.svg?style=flat)](https://www.nuget.org/packages/SuperSocket.SerialIO/)
+
+
 
 
 Serial IO support for SuperSocket
