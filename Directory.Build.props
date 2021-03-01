@@ -11,10 +11,4 @@
     <IncludeSource>true</IncludeSource>
     <Authors>SuperSocket Developer Community</Authors>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Nerdbank.GitVersioning">
-      <Version>3.3.37</Version>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
 </Project>
