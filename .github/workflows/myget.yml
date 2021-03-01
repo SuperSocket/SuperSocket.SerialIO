@@ -14,19 +14,11 @@ jobs:
               uses: actions/setup-dotnet@v1
               with:
                 dotnet-version: 3.1.100
-            - name: Build
-              run: dotnet build -c Release
-    deploy:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v1
             - uses: dotnet/nbgv@master
               id: nbgv
+            - name: Build
+              run: dotnet build -c Release -p:Version=${{ steps.nbgv.outputs.NuGetPackageVersion }}.${{ github.run_number }} -p:AssemblyVersion=${{ steps.nbgv.outputs.AssemblyVersion }} -p:AssemblyFileVersion=${{ steps.nbgv.outputs.AssemblyFileVersion }} -p:AssemblyInformationalVersion=${{ steps.nbgv.outputs.AssemblyInformationalVersion }}
             - name: Pack
-              run: dotnet pack -c Release -p:NuspecProperties="version=${{ steps.nbgv.outputs.NuGetPackageVersion }}.${{ github.run_number }}" src/SuperSocket.SerialIO/SuperSocket.SerialIO.csproj
+              run: dotnet pack -c Release
             - name: Push
               run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.MYGET_API_KEY }} --source https://www.myget.org/F/supersocket/api/v3/index.json
-
-
-              
