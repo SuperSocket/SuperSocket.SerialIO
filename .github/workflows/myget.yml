@@ -24,7 +24,7 @@ jobs:
             - uses: dotnet/nbgv@master
               id: nbgv
             - name: Pack
-              run: dotnet pack -c Release -p:NuspecProperties="version=${{ steps.nbgv.outputs.NuGetPackageVersion }}.${{ github.run_number }}" SuperSocket.SerialIO.sln
+              run: dotnet pack -c Release -p:NuspecProperties="version=${{ steps.nbgv.outputs.NuGetPackageVersion }}.${{ github.run_number }}" src/SuperSocket.SerialIO/SuperSocket.SerialIO.csproj
             - name: Push
               run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.MYGET_API_KEY }} --source https://www.myget.org/F/supersocket/api/v3/index.json
 
