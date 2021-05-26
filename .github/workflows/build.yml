@@ -7,18 +7,17 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-latest
+        strategy:
+          matrix:
+            os:
+                - ubuntu-latest
+                - windows-latest
+                - macos-latest
         steps:
             - uses: actions/checkout@v1
             - name: Setup .NET Core
               uses: actions/setup-dotnet@v1
               with:
                 dotnet-version: 3.1.100
-            - uses: dotnet/nbgv@master
-              id: nbgv
             - name: Build
-              run: dotnet build -c Release -p:Version=${{ steps.nbgv.outputs.NuGetPackageVersion }}.${{ github.run_number }} -p:AssemblyVersion=${{ steps.nbgv.outputs.AssemblyVersion }} -p:AssemblyFileVersion=${{ steps.nbgv.outputs.AssemblyFileVersion }} -p:AssemblyInformationalVersion=${{ steps.nbgv.outputs.AssemblyInformationalVersion }}
-            - name: Pack
-              run: dotnet pack -c Release -p:PackageVersion=${{ steps.nbgv.outputs.NuGetPackageVersion }}.${{ github.run_number }} /p:NoPackageAnalysis=true
-            - name: Push
-              run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.MYGET_API_KEY }} --source https://www.myget.org/F/supersocket/api/v3/index.json
+              run: dotnet build -c Release
