@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Threading;
 using System.Threading.Tasks;
-using SuperSocket.Channel;
+using SuperSocket.Connection;
 using SuperSocket.ProtoBase;
 
 namespace SuperSocket.SerialIO
 {
-    public class SerialIOPipeChannel<TPackageInfo> : PipeChannel<TPackageInfo>
+    public class SerialIOPipeConnection : PipeConnection
     {
         private SerialPort _serialPort = null;
 
-        public SerialIOPipeChannel(SerialPort serialPort, IPipelineFilter<TPackageInfo> pipelineFilter, ChannelOptions options)
-            : base(pipelineFilter, options)
+        public SerialIOPipeConnection(SerialPort serialPort, ConnectionOptions options)
+            : base(options)
         {
             _serialPort = serialPort;
         }

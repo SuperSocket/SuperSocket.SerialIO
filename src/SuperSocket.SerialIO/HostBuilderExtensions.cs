@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SuperSocket.SerialIO;
+using SuperSocket.Server.Abstractions.Connections;
+using SuperSocket.Server.Abstractions.Host;
 
 namespace SuperSocket
 {
@@ -12,7 +14,8 @@ namespace SuperSocket
             return hostBuilder.ConfigureServices(
                 (hostCtx, services) =>
                 {
-                    services.AddSingleton<IChannelCreatorFactory, SerialIOChannelCreatorFactory>();
+                    services.AddSingleton<IConnectionFactoryBuilder, SerialIOConnectionFactoryBuilder>();
+                    services.AddSingleton<IConnectionListenerFactory, SerialIOConnectionListenerFactory>();
                 }
             );
         }
