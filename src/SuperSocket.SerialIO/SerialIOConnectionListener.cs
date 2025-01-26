@@ -73,5 +73,18 @@ namespace SuperSocket.SerialIO
             _port?.Close();
             return Task.CompletedTask;
         }
+
+        public void Dispose()
+        {
+            var port = _port;
+
+            if (port == null)
+                return;
+
+            if (Interlocked.CompareExchange(ref _port, null, port) == port)
+            {
+                port.Dispose();
+            }
+        }
     }
 }
